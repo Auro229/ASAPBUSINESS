@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>ASAP BUSINESS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+   <title>Paiement Kkiapay dynamique</title>
+    <script src="https://cdn.kkiapay.me/k.js"></script>
+
+  <div class="container-fluid">
+  </div>
+ 
+</head>
+
+<body>
+  <header>
+     <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white w-100">  
+    <img src="./images/AS.png" alt="Logo" class="rounded-circle">
+    <a class="navbar-brand" href="#">ASAP BUSINESS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="./accueil.html">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./Produits.html">Produits</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">Contacts</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="https://wa.me/44914988?text=Je%20veux%20commander%20le%20e-book" target="_blank">Service client</a>
+            <a class="dropdown-item" href="https://www.facebook.com/share/1R7vV3vEpb/">Facebook</a>
+            <a class="dropdown-item" href="https://www.instagram.com/i_am_aurel19?igsh=MXc4bnpsZ215amN3Zw==">Instagram</a>
+            <a class="dropdown-item" href="#">LinkedIn</a>
+            <a class="dropdown-item" href="#">TikTok</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./propos.html">À propos de nous</a>
+        </li>
+      </ul>
+
+      <!-- FORM RECHERCHE -->
+      <form class="form-inline" onsubmit="return false;">
+        <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Recherche">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="filterProducts()">Recherche</button>
+      </form>
+      <div id="noResults" style="display:none; color:#747474; margin-left: 1rem;">
+        Aucun produit trouvé.
+      </div>
+      
+   <div id="panier-header" onclick="togglePanier()" title="Voir le panier">
+      🛒🏪
+      <span id="compteur-panier">0</span>
+    </div>
+    <div id="panier-details">
+      <h2>Votre panier</h2>
+      <ul id="liste-panier"></ul>
+      <div id="total-panier">Total : 0 FCFA</div>
+      <kkiapay-widget amount="80000" 
+                key="94a0a81033fb11f0a3c437615af3de0d"
+                position="center"
+                sandbox="true"
+                data="Paiment d'un e-book"
+                callback="<url-de-redirection-quand-le-paiement-est-reussi>">
+</kkiapay-widget>
+    </div>
+    
+    
+  </nav>
+
+  </header>
+ 
+
+  <!-- CAROUSEL -->
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./images/7259813.jpg" class="d-block w-100" alt="Couverture e-book fashion">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>E-book</h5>
+          <p>Construis ton style, impose ta marque. La mode, c’est ton business</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="./images/A.avif" class="d-block w-100" alt="E-book Let Yourself Dream">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>E-book</h5>
+          <p>Tu as le droit de rêver grand. Et surtout, de le réaliser</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="./images/1.jpg" class="d-block w-100" alt="E-book Marketing digital">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>E-book</h5>
+          <p>Savoir vendre sur internet, c’est une compétence pour la vie</p>
+        </div>
+      </div>
+       <div class="carousel-item">
+        <img src="./images/OVJX680.jpg" class="d-block w-100" alt="E-book Marketing digital">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>E-book</h5>
+          <p>Savoir vendre sur internet, c’est une compétence pour la vie</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Précédent</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Suivant</span>
+    </a>
+  </div>
+  
+
+  <!-- BARRE TITRE "Nos produits" -->
+  <div style="background-color:#6a5990;;; padding: 1rem;">
+    <h2 class="text-light text-center m-0">Nos produits</h2>
+  </div>
+
+  <!-- ZONE PRODUITS -->
+   <!-- dans une section -->
+<div class="fade-in">Contenu qui apparaît au scroll</div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card">
+        <img src="./images/1A.png" alt="Produit" class="card-img" style="max-width: 100%;">
+        <h3 class="card-title">COMMENT GAGNER SA VIE GRACE AU MARKETING DIGITAL</h3>
+        <p class="card-price">3 000 FCFA</p>
+        <button class="buy-btn" style="background-color: #28a745; color: white; padding: 0.5rem 1rem; border: none; border-radius: 5px; margin-bottom: 0.5rem; cursor: pointer;">
+      Ajouter au panier
+    </button>
+    <br>
+    </button>   
+      <kkiapay-widget amount="3000" 
+                key="94a0a81033fb11f0a3c437615af3de0d"
+                position="center"
+                sandbox="true"
+                data="Paiment d'un e-book"
+                callback="<url-de-redirection-quand-le-paiement-est-reussi>">
+</kkiapay-widget>   
+      </div>
+    </div>
+<div class="col-md-4">
+  <div class="card" style="text-align: center; padding: 1rem;">
+    <img src="./images/boo.png" alt="Produit" class="card-img" style="max-width: 100%;">
+    <h3 class="card-title">SECRETS MARKETING</h3>
+    <p class="card-price">3 000 FCFA</p>
+    <button class="buy-btn" style="background-color: #28a745; color: white; padding: 0.5rem 1rem; border: none; border-radius: 5px; margin-bottom: 0.5rem; cursor: pointer;">
+      Ajouter au panier
+    </button>
+    <br>
+     <kkiapay-widget amount="3000" 
+                key="94a0a81033fb11f0a3c437615af3de0d"
+                position="center"
+                sandbox="true"
+                data="Paiment d'un e-book"
+                callback="<url-de-redirection-quand-le-paiement-est-reussi>">
+</kkiapay-widget>   
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card" style="text-align: center; padding: 1rem;">
+    <img src="./images/b2.png" alt="Produit" class="card-img" style="max-width: 100%;">
+    <h3 class="card-title">LA PAIX INTÉRIEURE</h3>
+    <p class="card-price">3 000 FCFA</p>
+    <button class="buy-btn" style="background-color: #28a745; color: white; padding: 0.5rem 1rem; border: none; border-radius: 5px; margin-bottom: 0.5rem; cursor: pointer;">
+      Ajouter au panier
+    </button>
+    <br>
+       <kkiapay-widget amount="3000" 
+                key="94a0a81033fb11f0a3c437615af3de0d"
+                position="center"
+                sandbox="true"
+                data="Paiment d'un e-book"
+                callback="<url-de-redirection-quand-le-paiement-est-reussi>">
+</kkiapay-widget>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card" style="text-align: center; padding: 1rem;">
+    <img src="./images/uno.png" alt="Produit" class="card-img" style="max-width: 100%;">
+    <h3 class="card-title">10 IDÉES DE BUSINESS RENTABLES POUR LES JEUNES</h3>
+    <p class="card-price">3 000 FCFA</p>
+    <button class="buy-btn" style="background-color: #28a745; color: white; padding: 0.5rem 1rem; border: none; border-radius: 5px; margin-bottom: 0.5rem; cursor: pointer;">
+      Ajouter au panier
+    </button>
+    <br>
+       <kkiapay-widget amount="3000" 
+                key="94a0a81033fb11f0a3c437615af3de0d"
+                position="center"
+                sandbox="true"
+                data="Paiment d'un e-book"
+                callback="<url-de-redirection-quand-le-paiement-est-reussi>">
+</kkiapay-widget>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card" style="text-align: center; padding: 1rem;">
+    <img src="./images/2.png" alt="Produit" class="card-img" style="max-width: 100%;">
+    <h3 class="card-title">VENDRE SES SERVICES EN LIGNE</h3>
+    <p class="card-price">3 000 FCFA</p>
+    <button class="buy-btn" style="background-color: #28a745; color: white; padding: 0.5rem 1rem; border: none; border-radius: 5px; margin-bottom: 0.5rem; cursor: pointer;">
+      Ajouter au panier
+    </button>
+    <br>
+      <kkiapay-widget amount="3000" 
+                key="94a0a81033fb11f0a3c437615af3de0d"
+                position="center"
+                sandbox="true"
+                data="Paiment d'un e-book"
+                callback="<url-de-redirection-quand-le-paiement-est-reussi>">
+</kkiapay-widget>
+  </div>
+</div>
+
+    
+      <div class="col-md-4">
+  <div class="card" style="text-align: center; padding: 1rem;">
+    <img src="./images/3.png" alt="Produit" class="card-img" style="max-width: 100%;">
+    <h3 class="card-title">10 ERREURS À ÉVITER</h3>
+    <p class="card-price">5000 FCFA</p>
+
+    <button class="buy-btn" style="background-color: #28a745; color: white; padding: 0.5rem 1rem; border: none; border-radius: 5px; margin-bottom: 0.5rem; cursor: pointer;">
+      Ajouter au panier
+    </button>
+    <br>
+         <kkiapay-widget amount="5000" 
+                key="94a0a81033fb11f0a3c437615af3de0d"
+                position="center"
+                sandbox="true"
+                data="Paiment d'un e-book"
+                callback="<url-de-redirection-quand-le-paiement-est-reussi>">
+</kkiapay-widget>
+  </div>
+</div>
+
+
+  <div style="background-color:#ffffff;;;; padding: 1rem;">
+    <p class="text-light text-center m-0"></p> <a href="./Produits.html">Cliquez ici pour accéder à tous nos produits.</a>
+  </div>  
+  </div>
+ <p class="voir-plus">
+  </p>
+
+    <a href="https://www.facebook.com/ASAPBusiness" target="_blank" class="text-light">Facebook</a> |
+    <a href="https://www.instagram.com/ASAPBusiness" target="_blank" class="text-light">Instagram</a> |
+    <a href="https://www.linkedin.com/company/ASAPBusiness" target="_blank" class="text-light">LinkedIn</a> |
+    <a href="https://www.tiktok.com/@ASAPBusiness" target="_blank" class="text-light">TikTok</a>
+  </p>
+
+  <!-- JS SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const productCards = document.querySelectorAll('.card');
+    const noResults = document.getElementById('noResults');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function filterProducts() {
+      const filter = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      productCards.forEach(card => {
+        const title = card.querySelector('.card-title').textContent.toLowerCase();
+        if (title.includes(filter)) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Afficher message si aucun produit
+      noResults.style.display = visibleCount === 0 ? 'inline-block' : 'none';
+      resetBtn.style.display = filter.length > 0 ? 'inline-block' : 'none';
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+
+    resetBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      filterProducts();
+      searchInput.focus();
+    });
+  </script>
+
+
+  <script>
+  let panier = [];
+  let total = 0;
+
+  function ajouterAuPanier(nom, prix) {
+    panier.push({ nom, prix });
+    total += prix;
+
+    // Mettre à jour le compteur
+    document.getElementById("compteur-panier").innerText = panier.length;
+
+    // Mettre à jour la liste dans le panier
+    let liste = document.getElementById("liste-panier");
+    let item = document.createElement("li");
+    item.innerText = `${nom} - ${prix.toLocaleString()} FCFA`;
+    liste.appendChild(item);
+
+    // Mettre à jour le total
+    document.getElementById("total-panier").innerText = `Total : ${total.toLocaleString()} FCFA`;
+  }
+
+  function togglePanier() {
+    const panierDiv = document.getElementById("panier-details");
+    panierDiv.style.display = panierDiv.style.display === "block" ? "none" : "block";
+  }
+
+  function commander() {
+    if (panier.length === 0) {
+      alert("Votre panier est vide !");
+    } else {
+      alert("Merci pour votre commande !");
+      panier = [];
+      total = 0;
+      document.getElementById("liste-panier").innerHTML = "";
+      document.getElementById("total-panier").innerText = "Total : 0 FCFA";
+      document.getElementById("compteur-panier").innerText = "0";
+    }
+  }
+
+  // Optionnel : Attacher automatiquement les boutons au script
+  document.addEventListener("DOMContentLoaded", () => {
+    const boutons = document.querySelectorAll(".card");
+    boutons.forEach(card => {
+      const nom = card.querySelector(".card-title").innerText;
+      const prixTxt = card.querySelector(".card-price").innerText;
+      const prix = parseInt(prixTxt.replace(/[^\d]/g, ''));
+      const bouton = card.querySelector(".buy-btn");
+      bouton.addEventListener("click", () => ajouterAuPanier(nom, prix));
+    });
+  });
+</script>
+<script>
+  const elements = document.querySelectorAll('.fade-in');
+
+  function handleScroll() {
+    elements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        el.classList.add('apparue');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('load', handleScroll);
+</script>
+
+
+<script src="https://cdn.kkiapay.me/k.js"></script>
+
+
+  
+  
+</body>
+</html>
+<!-- ✅ Pied de page -->
+<footer style="width: 100%; background-color: #007BFF; color: white; text-align: center; padding: 1rem 0; position: relative; bottom: 0;">
+  <p>&copy; 2025 ASAP Business | Tous droits réservés</p>
+  <p>Contact : <a href="mailto:contact@asapbusiness.com" style="color: #ffffff;">contact@asapbusiness.com</a></p>
+</footer>

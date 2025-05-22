@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ma Boutique</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff; /* fond blanc */
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #ff4d4d;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    #panier-header {
+      cursor: pointer;
+      position: relative;
+      width: 40px;
+      height: 40px;
+      background-color: #fdfcfc;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      color: white;
+      font-size: 24px;
+      user-select: none;
+    }
+    #panier-header:hover {
+      opacity: 0.85;
+    }
+    #compteur-panier {
+      background: #222;
+      color: white;
+      border-radius: 50%;
+      padding: 3px 8px;
+      font-size: 14px;
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      font-weight: bold;
+      user-select: none;
+    }
+    #panier-details {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 30px;
+      background: white;
+      color: #333;
+      width: 320px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      padding: 15px;
+      z-index: 10;
+    }
+    #panier-details h2 {
+      margin-top: 0;
+      font-size: 18px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+      color: #000; /* titre noir */
+    }
+    #liste-panier {
+      list-style: none;
+      padding: 0;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+    #liste-panier li {
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+    #total-panier {
+      font-weight: bold;
+      font-size: 16px;
+      text-align: right;
+      margin-bottom: 10px;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+      gap: 20px;
+      padding: 0 20px 40px;
+      background: #fff; /* blanc */
+    }
+    .produit {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 15px;
+      width: 250px;
+      text-align: center;
+      color: #333;
+    }
+    .produit h3 {
+      margin-top: 0;
+    }
+    .produit p {
+      color: #555;
+    }
+    .produit button {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 14px;
+    }
+    .produit button:hover {
+      background-color: #e60000;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Bienvenue dans ma boutique</h1>
+    <div id="panier-header" onclick="togglePanier()">
+      🛒
+      <span id="compteur-panier">0</span>
+    </div>
+    <div id="panier-details">
+      <h2>Votre panier</h2>
+      <ul id="liste-panier"></ul>
+      <div id="total-panier">Total : 0 FCFA</div>
+      <button onclick="commander()" style="background:#ff4d4d; color:#fff; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">Commander</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="produit">
+      <h3>T-shirt rouge</h3>
+      <p>Prix : 5 000 FCFA</p>
+      <button onclick="ajouterAuPanier('T-shirt rouge', 5000)">Ajouter au panier</button>
+    </div>
+
+    <div class="produit">
+      <h3>Crêpe tissu</h3>
+      <p>Prix : 3 000 FCFA</p>
+      <button onclick="ajouterAuPanier('Crêpe tissu', 3000)">Ajouter au panier</button>
+    </div>
+
+    <div class="produit">
+      <h3>Boxer homme</h3>
+      <p>Prix : 2 000 FCFA</p>
+      <button onclick="ajouterAuPanier('Boxer homme', 2000)">Ajouter au panier</button>
+    </div>
+  </div>
+
+<script>
+  let panier = [];
+  let total = 0;
+
+  function ajouterAuPanier(nom, prix) {
+    panier.push({ nom, prix });
+    total += prix;
+    mettreAJourPanier();
+  }
+
+  function mettreAJourPanier() {
+    const liste = document.getElementById("liste-panier");
+    liste.innerHTML = "";
+    panier.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.nom} - ${item.prix} FCFA`;
+      liste.appendChild(li);
+    });
+    document.getElementById("total-panier").textContent = "Total : " + total + " FCFA";
+    document.getElementById("compteur-panier").textContent = panier.length;
+  }
+
+  function togglePanier() {
+    const details = document.getElementById("panier-details");
+    if(details.style.display === "block") {
+      details.style.display = "none";
+    } else {
+      details.style.display = "block";
+    }
+  }
+
+  function commander() {
+    if(panier.length === 0) {
+      alert("Ton panier est vide !");
+      return;
+    }
+    alert("Merci pour ta commande ! Total à payer : " + total + " FCFA");
+  }
+</script>
+
+</body>
+</html>
