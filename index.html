@@ -26,6 +26,22 @@
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+      <div id="panier-header" onclick="togglePanier()" title="Voir le panier">
+      🛒🏪
+      <span id="compteur-panier">0</span>
+    </div>
+    <div id="panier-details">
+      <h2>Votre panier</h2>
+      <ul id="liste-panier"></ul>
+      <div id="total-panier">Total : 0 FCFA</div>
+      <kkiapay-widget amount="8000" 
+                key="94a0a81033fb11f0a3c437615af3de0d"
+                position="center"
+                sandbox="true"
+                data="Paiment d'un e-book"
+                callback="<url-de-redirection-quand-le-paiement-est-reussi>">
+</kkiapay-widget>
+    </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -49,7 +65,7 @@
           <a class="nav-link" href="./propos.html">À propos de nous</a>
         </li>
       </ul>
-
+  
       <!-- FORM RECHERCHE -->
       <form class="form-inline" onsubmit="return false;">
         <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Recherche">
@@ -57,26 +73,7 @@
       </form>
       <div id="noResults" style="display:none; color:#747474; margin-left: 1rem;">
         Aucun produit trouvé.
-      </div>
-      
-   <div id="panier-header" onclick="togglePanier()" title="Voir le panier">
-      🛒🏪
-      <span id="compteur-panier">0</span>
-    </div>
-    <div id="panier-details">
-      <h2>Votre panier</h2>
-      <ul id="liste-panier"></ul>
-      <div id="total-panier">Total : 0 FCFA</div>
-      <kkiapay-widget amount="80000" 
-                key="94a0a81033fb11f0a3c437615af3de0d"
-                position="center"
-                sandbox="true"
-                data="Paiment d'un e-book"
-                callback="<url-de-redirection-quand-le-paiement-est-reussi>">
-</kkiapay-widget>
-    </div>
-    
-    
+      </div>  
   </nav>
 
   </header>
